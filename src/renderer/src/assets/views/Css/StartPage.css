@@ -1,0 +1,32 @@
+.mainSection{
+    /* border: solid black; */
+    width: 80%;
+    height: fit-content;
+    /* margin: 0 0 0 10%; */
+}
+
+.chronometerZone{
+    background-color: #ffa600;
+    width: 50%;
+    height: 30dvh;
+    display: flex;
+    place-content: center;
+    margin: 10% 0 0 35% ;
+    border-radius: 18px;
+    border: solid slateblue;
+    border-width: 2dvh;
+}
+
+.chronometerZone h2{
+    font-size: 1.5cm;
+    font-family: Jaro;
+    font-weight: 100;
+}
+
+.buttonsZone{
+    /* border: solid black; */
+    display: flex;
+    place-content: center;
+    margin: 10% 0 0 20%;
+    gap: 20%;
+}

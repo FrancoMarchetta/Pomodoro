@@ -1,15 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import HomePage from "./assets/views/HomePage";
-import ReactAudioPlayer from "react-audio-player";
+import Start from "./assets/views/Start";
 function App() {
 
   return (
     <>
 
-      <ReactAudioPlayer ></ReactAudioPlayer>
       <BrowserRouter>
         <Routes>
           <Route element={<HomePage></HomePage>} path="/"></Route>
+          <Route element={<Start></Start>} path="/start"></Route>
         </Routes>
       </BrowserRouter>
 

@@ -1,0 +1,15 @@
+.SideBarSection{
+    /* border: solid green; */
+    background-color: rebeccapurple;
+    height: fit-content;
+    width: 30dvh;
+    margin-left: -18%;
+    transition: .6s;
+    border: solid black;
+    /* display: flex; */
+}
+
+.SideBarSection:hover{
+    margin-left: -0.9%;
+    cursor: pointer;
+}

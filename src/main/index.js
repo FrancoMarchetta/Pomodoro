@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, Menu } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
@@ -9,7 +9,7 @@ function createWindow() {
     width: 900,
     height: 670,
     show: false,
-    autoHideMenuBar: true,
+    autoHideMenuBar: false,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
@@ -35,9 +35,64 @@ function createWindow() {
   }
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
+/////////////////////////////////////////////////////////////////////////
+////////////////////////menu personalizado///////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+
+const template = [
+  {
+    label: 'Archivo',
+    submenu: [
+      {
+        label: 'Nuevo',
+        accelerator: process.platform === 'darwin' ? 'Cmd+N' : 'Ctrl+N',
+        click: () => {
+          // Acción para nuevo archivo
+          mainWindow.webContents.send('menu-nuevo');
+        }
+      },
+      { type: 'separator' },
+      {
+        label: 'Salir',
+        accelerator: process.platform === 'darwin' ? 'Cmd+Q' : 'Ctrl+Q',
+        click: () => {
+          app.quit();
+        }
+      }
+    ]
+  },
+  {
+    label: 'Editar',
+    submenu: [
+      { role: 'undo', label: 'Deshacer' },
+      { role: 'redo', label: 'Rehacer' },
+      { type: 'separator' },
+      { role: 'cut', label: 'Cortar' },
+      { role: 'copy', label: 'Copiar' },
+      { role: 'paste', label: 'Pegar' },
+      { role: 'delete', label: 'Eliminar' },
+      { role: 'selectAll', label: 'Seleccionar Todo' }
+    ]
+  },
+  {
+    label: 'Ver',
+    submenu: [
+      { role: 'reload', label: 'Recargar' },
+      { role: 'toggleDevTools', label: 'Herramientas de Desarrollo' },
+      { type: 'separator' },
+      { role: 'togglefullscreen', label: 'Pantalla Completa' }
+    ]
+  }
+];
+
+const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
+
+  
+  /////////////////////////////////////////////////////////////////////// ////
+  //////////////////////// Fin menu personalizado/////////////////////////////
+  /////////////////////////////////////////////////////////////////////// ////
+
 app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
