@@ -1,0 +1,13 @@
+.Buttons{
+    background-color: #252525;
+    height: fit-content;
+    color: #fff;
+    font-family: Jaro;
+    font-size: .8cm;
+    width: 6em;
+}
+
+.Buttons:hover{
+    cursor: pointer;
+
+}

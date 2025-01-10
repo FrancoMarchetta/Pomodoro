@@ -1,0 +1,18 @@
+.title{
+    background-color: #252525;
+    display: flex;
+    justify-content: center;
+    width:70% ;
+    margin-left: 14.5%;
+    position: fixed;
+    top: 0;
+    border-radius: 10px;
+}
+
+.title h1{
+    font-family: Jaro  ;
+    font-size: 1cm;
+}
+
+/* consejo --> añadir media queries */
+
