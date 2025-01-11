@@ -6,9 +6,11 @@
     font-size: .8cm;
     width: 6em;
     color: #FFA600;
+    transition: .5s;
 }
 
 .Buttons:hover{
     cursor: pointer;
+    color: #00e39f;
 
 }

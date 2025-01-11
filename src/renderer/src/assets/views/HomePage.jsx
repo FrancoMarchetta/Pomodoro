@@ -2,6 +2,8 @@ import React from 'react'
 import "./Css/HomePage.css"
 import Buttons from '../../components/Buttons'
 import { useNavigate } from 'react-router-dom'
+
+
 const HomePage = () => {
 
     // funciones de los botones
@@ -13,7 +15,7 @@ const HomePage = () => {
     }
 
     const quitApp = () => {
-        electron.app.quit()
+        app.quit()
 
     }
 

@@ -9,6 +9,9 @@ function createWindow() {
     width: 900,
     height: 670,
     show: false,
+    fullscreenable:false,
+    maximizable:false,
+    resizable:false,
     autoHideMenuBar: false,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
@@ -61,26 +64,14 @@ const template = [
       }
     ]
   },
-  {
-    label: 'Editar',
-    submenu: [
-      { role: 'undo', label: 'Deshacer' },
-      { role: 'redo', label: 'Rehacer' },
-      { type: 'separator' },
-      { role: 'cut', label: 'Cortar' },
-      { role: 'copy', label: 'Copiar' },
-      { role: 'paste', label: 'Pegar' },
-      { role: 'delete', label: 'Eliminar' },
-      { role: 'selectAll', label: 'Seleccionar Todo' }
-    ]
-  },
+    
   {
     label: 'Ver',
     submenu: [
       { role: 'reload', label: 'Recargar' },
       { role: 'toggleDevTools', label: 'Herramientas de Desarrollo' },
       { type: 'separator' },
-      { role: 'togglefullscreen', label: 'Pantalla Completa' }
+      // { role: 'togglefullscreen', label: 'Pantalla Completa' }  no quiero que se pueda poner el pantalla completa
     ]
   }
 ];
