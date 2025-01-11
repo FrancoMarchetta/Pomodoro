@@ -16,7 +16,8 @@ const Start = () => {
                 setSeconds((prevSeconds) => {
                     if (prevSeconds <= 1) {
                         clearInterval(interval); // Detiene el intervalo cuando llega a 0
-                        setIsRunning(false); // Detiene el temporizadora
+                        setIsRunning(false); // Detiene el temporizador
+
                         return 0;
                     }
                     return prevSeconds - 1; // Reduce el contador en 1
@@ -26,6 +27,16 @@ const Start = () => {
             return () => clearInterval(interval); // Limpieza del intervalo
         }
     }, [isRunning, seconds]); // Vuelve a ejecutar cuando cambian isRunning o seconds
+
+
+    const restartTimer = () => {
+        setSeconds(5);
+        setIsRunning(true);
+        const audio = new Audio("https://www.youtube.com/watch?v=lCCESmq9-vs");
+    }
+
+
+
 
     const path = useNavigate();
 
@@ -51,6 +62,7 @@ const Start = () => {
 
                     <div className='chronometerZone'>
                         <h2>{seconds}</h2>
+                        {seconds <= 0 && <Buttons onClick={restartTimer} text={"Restart"}></Buttons>}
                     </div>
 
                     <div className='buttonsZone'>

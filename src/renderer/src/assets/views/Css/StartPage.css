@@ -11,17 +11,20 @@
     width: 50%;
     height: 30dvh;
     display: flex;
+    flex-direction: column;
     place-content: center;
+    align-items: center;
     margin: 10% 0 0 35% ;
     border-radius: 18px;
     border: solid slateblue;
-    border-width: 2dvh;
+    border-width: 1.5dvh;
 }
 
 .chronometerZone h2{
     font-size: 1.5cm;
     font-family: Jaro;
     font-weight: 100;
+    margin-top: -5px;
 }
 
 .buttonsZone{
