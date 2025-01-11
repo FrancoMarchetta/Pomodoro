@@ -32,11 +32,19 @@ const Start = () => {
     const restartTimer = () => {
         setSeconds(5);
         setIsRunning(true);
-        const audio = new Audio("https://www.youtube.com/watch?v=lCCESmq9-vs");
+
     }
 
+    if (seconds === 0) {
+        setInterval(() => {
 
+            const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
+            audio.play().catch(error => {
+                console.log(error + "error audio shit ");
 
+            })
+        }, 1500);
+    }
 
     const path = useNavigate();
 
