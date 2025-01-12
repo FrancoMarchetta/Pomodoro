@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react'
+import React, { use, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Buttons from '../../components/Buttons';
 import "./Css/StartPage.Css"
@@ -8,49 +8,52 @@ const Start = () => {
     const [seconds, setSeconds] = useState(5);
     const [isRunning, setIsRunning] = useState(false);
 
+    const audioRef = useRef(null);
 
+
+    useEffect(() => {
+        if (seconds === 0) {
+            // Reproduce el audio una sola vez
+            if (!audioRef.current) {
+                audioRef.current = new Audio("https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3");
+                audioRef.current.loop = true; // Repetir el audio
+                audioRef.current.play().catch((error) => {
+                    console.log("Error reproduciendo el audio:", error);
+                });
+            }
+        }
+
+        if (seconds > 0 && audioRef.current) {
+            // Detén el audio si el temporizador se reinicia
+            audioRef.current.pause();
+            audioRef.current.currentTime = 0;
+            audioRef.current = null;
+        }
+    }, [seconds]);
 
     useEffect(() => {
         if (isRunning && seconds > 0) {
             const interval = setInterval(() => {
-                setSeconds((prevSeconds) => {
-                    if (prevSeconds <= 1) {
-                        clearInterval(interval); // Detiene el intervalo cuando llega a 0
-                        setIsRunning(false); // Detiene el temporizador
-
-                        return 0;
-                    }
-                    return prevSeconds - 1; // Reduce el contador en 1
-                });
+                setSeconds((prevSeconds) => prevSeconds - 1);
             }, 1000);
 
-            return () => clearInterval(interval); // Limpieza del intervalo
+            return () => clearInterval(interval);
         }
-    }, [isRunning, seconds]); // Vuelve a ejecutar cuando cambian isRunning o seconds
-
+    }, [isRunning, seconds]);
 
     const restartTimer = () => {
         setSeconds(5);
         setIsRunning(true);
+    };
 
-    }
-
-    if (seconds === 0) {
-        setInterval(() => {
-
-            const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
-            audio.play().catch(error => {
-                console.log(error + "error audio shit ");
-
-            })
-        }, 1500);
-    }
 
     const path = useNavigate();
 
     const GoToHome = () => {
         path("/");
     }
+
+
 
     return (
         <>
@@ -61,6 +64,7 @@ const Start = () => {
             <main style={{ display: "flex" }}>
 
                 <SideBar></SideBar>
+
 
 
 

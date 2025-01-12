@@ -12,6 +12,7 @@ const SideBar = () => {
                     <Buttons text={"Delete Timer"}></Buttons>
                 </div>
 
+                <p style={{ margin: "43dvh 0% 0% 2%" }}>🐱‍👤</p>
 
             </section>
         </>
