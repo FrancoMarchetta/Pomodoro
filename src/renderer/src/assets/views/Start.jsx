@@ -5,8 +5,9 @@ import "./Css/StartPage.Css"
 import SideBar from '../../components/SideBar';
 const Start = () => {
 
-    const [seconds, setSeconds] = useState(5);
+    const [seconds, setSeconds] = useState(3);
     const [isRunning, setIsRunning] = useState(false);
+
 
     const audioRef = useRef(null);
 
@@ -51,6 +52,7 @@ const Start = () => {
 
     const GoToHome = () => {
         path("/");
+        audioRef.current.pause(); // <-- para el sonido si es que esta sonando y vamos a la pestaña home
     }
 
 
@@ -61,21 +63,19 @@ const Start = () => {
             <br />
             <br />
 
+
             <main style={{ display: "flex" }}>
 
-                <SideBar></SideBar>
+                <SideBar title={"Time Manager"}></SideBar>
+
+                <section className='mainSection'>
 
 
-
-
-
-                <search className='mainSection'>
-
-
-                    <div className='chronometerZone'>
+                    <div className={seconds === 0 ? 'chronometerZone chronometerZoneTest' : 'chronometerZone'}>
                         <h2>{seconds}</h2>
                         {seconds <= 0 && <Buttons onClick={restartTimer} text={"Restart"}></Buttons>}
                     </div>
+
 
                     <div className='buttonsZone'>
                         <Buttons onClick={() => { setIsRunning(false) }} text={"Stop"}></Buttons>
@@ -84,7 +84,7 @@ const Start = () => {
 
 
 
-                </search>
+                </section>
             </main>
         </>
     )

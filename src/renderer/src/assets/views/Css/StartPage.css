@@ -20,6 +20,11 @@
     border-width: 1.5dvh;
 }
 
+.chronometerZoneTest{
+    background-color: red;
+
+}
+
 .chronometerZone h2{
     font-size: 1.5cm;
     font-family: Jaro;
