@@ -2,11 +2,15 @@ import React, { use, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Buttons from '../../components/Buttons';
 import "./Css/StartPage.Css"
+import "../../components/ComponentCss/Buttons.css"
 import SideBar from '../../components/SideBar';
 const Start = () => {
 
-    const [seconds, setSeconds] = useState(3);
+    const [seconds, setSeconds] = useState();
+    const [backUpSeconds, setBackUpSeconds] = useState();
     const [isRunning, setIsRunning] = useState(false);
+    const [toggleModal, setToggleModal] = useState(false);
+
 
 
     const audioRef = useRef(null);
@@ -43,7 +47,8 @@ const Start = () => {
     }, [isRunning, seconds]);
 
     const restartTimer = () => {
-        setSeconds(5);
+        audioRef.current.pause();
+        setSeconds(backUpSeconds);
         setIsRunning(true);
     };
 
@@ -60,13 +65,52 @@ const Start = () => {
     return (
         <>
             <Buttons onClick={GoToHome} text={"Go Back"}></Buttons>
+
+
             <br />
             <br />
 
 
             <main style={{ display: "flex" }}>
 
-                <SideBar title={"Time Manager"}></SideBar>
+                <SideBar title={"Time Manager"}>
+                    <div style={{ display: "flex", flexDirection: "column", placeItems: "center", gap: "20px" }}>
+
+                        <Buttons onClick={() => {
+                            setToggleModal(!toggleModal);
+                            console.log(toggleModal);
+                        }} text={"Set Timer"}>
+                        </Buttons>
+
+                        {toggleModal && (<>
+
+                            <input
+                                className='Buttons smallerShi'
+                                value={seconds}
+                                placeholder='enter time'
+                                onChange={(e) => {
+                                    setSeconds(e.target.value);
+                                    setBackUpSeconds(e.target.value);
+                                    setTimeout(() => {
+                                        e.target.value = null;
+                                    }, 2000);
+
+                                }}>
+
+                            </input>
+
+                        </>)}
+
+                        <Buttons onClick={() => {
+                            setSeconds(null);
+                            audioRef.current.pause();
+                        }}
+                            text={"Delete Timer"}></Buttons>
+                    </div>
+
+                    <p style={{ margin: "43dvh 0% 0% 2%" }}>🐱‍👤</p>
+
+                </SideBar>
 
                 <section className='mainSection'>
 
@@ -78,7 +122,7 @@ const Start = () => {
 
 
                     <div className='buttonsZone'>
-                        <Buttons onClick={() => { setIsRunning(false) }} text={"Stop"}></Buttons>
+                        <Buttons onClick={() => { setIsRunning(false); audioRef.current.pause(); }} text={"Stop"}></Buttons>
                         <Buttons onClick={() => { setIsRunning(true) }} text={"Start"}></Buttons>
                     </div>
 
