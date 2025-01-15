@@ -116,7 +116,9 @@ const Start = () => {
                             text={'Delete Timer'}
                         ></Buttons>
                     </div>
-                    <p style={{ margin: '43dvh 0% 0% 2%' }}>🐱‍👤</p>
+                    <a href="https://link.mercadopago.com.ar/trlab3" target='_blank'>
+                        <p style={{ margin: '43dvh 0% 0% 2%', color: "#FFA600" }}>Gimme money!!🤑</p>
+                    </a>
                 </SideBar>
                 <section className='mainSection'>
                     <div className={seconds === 0 && minutes === 0 ? 'chronometerZone chronometerZoneTest' : 'chronometerZone'}>

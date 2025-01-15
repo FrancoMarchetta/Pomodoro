@@ -32,13 +32,14 @@ const HomePage = () => {
 
 
                 <section style={{ gap: "10%", display: "flex", placeContent: "center", width: "100%", marginTop: "30%" }}>
-                    <Buttons text={"No Idea 🤷🏼‍♂️"}></Buttons>
+                    <a href="https://github.com/FrancoMarchetta" target='_blank' >
+                        <Buttons text={"GitHub"}></Buttons>
+                    </a>
                     <Buttons onClick={goToStart} text={"Start"}></Buttons>
 
 
                 </section>
 
-                <img src="src/renderer/src/assets/public/jimmy.png" alt="" />
 
             </main >
         </>
