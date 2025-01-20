@@ -1,12 +1,9 @@
-.mainSection{
+.main-div{
     /* border: solid black; */
-    width: 80%;
-    height: fit-content;
-    /* position: absolute; */
-    /* margin: 0 0 0 10%; */
+    /* height: 80vh; */
 }
 
-.chronometerZone{
+.timer-section{
     background-color: #ffa600;
     width: 50%;
     height: 30dvh;
@@ -14,35 +11,21 @@
     flex-direction: column;
     place-content: center;
     align-items: center;
-    margin: 10% 0 0 35% ;
+    margin: 11% 0% 0% 23%;
     border-radius: 18px;
     border: solid slateblue;
     border-width: 1.5dvh;
 }
-
-.chronometerZoneTest{
-    background-color: red;
-
-}
-
-.chronometerZone h2{
+.timer-section h2{
+    font-family: jaro;
     font-size: 1.5cm;
-    font-family: Jaro;
     font-weight: 100;
-    margin-top: -5px;
 }
 
-.zona-btns{
+.buttonsZone{
     /* border: solid black; */
-    margin: 10% 0 0 20%;
     display: flex;
     place-content: center;
+    margin: 10% 0 0 0%;
     gap: 20%;
-}
-
-
-.smallerShi{
-    width: 25dvb;
-    font-size: larger;
-
 }

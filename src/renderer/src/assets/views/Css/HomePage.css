@@ -15,5 +15,12 @@
     color: #FFA600;
 }
 
+.div-btn-github{
+    /* border: solid black; */
+    margin-top: 2%;
+    display: flex;
+    place-content: center;
+}
+
 /* consejo --> añadir media queries */
 

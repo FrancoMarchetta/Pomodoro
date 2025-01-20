@@ -127,7 +127,7 @@ const Start = () => {
                         </h2>
                         {seconds === 0 && minutes === 0 && <Buttons onClick={restartTimer} text={'Restart'}></Buttons>}
                     </div>
-                    <div className='buttonsZone'>
+                    <div className='zona-btns'>
                         <Buttons onClick={() => setIsRunning(false)} text={'Stop'}></Buttons>
                         <Buttons onClick={() => setIsRunning(true)} text={'Start'}></Buttons>
                     </div>

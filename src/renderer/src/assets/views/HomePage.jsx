@@ -10,8 +10,13 @@ const HomePage = () => {
 
     const path = useNavigate();
 
-    const goToStart = () => {
-        path("/start")
+    const goToChronometer = () => {
+        path("/chronometer")
+    }
+
+    const goToTimer = () => {
+        path("/timer")
+
     }
 
     const quitApp = () => {
@@ -32,13 +37,16 @@ const HomePage = () => {
 
 
                 <section style={{ gap: "10%", display: "flex", placeContent: "center", width: "100%", marginTop: "30%" }}>
+                    <Buttons onClick={goToTimer} text={"timer"}></Buttons>
+                    <Buttons onClick={goToChronometer} text={"chronometer"}></Buttons>
+                </section>
+
+                <div className='div-btn-github'>
+
                     <a href="https://github.com/FrancoMarchetta" target='_blank' >
                         <Buttons text={"GitHub"}></Buttons>
                     </a>
-                    <Buttons onClick={goToStart} text={"Start"}></Buttons>
-
-
-                </section>
+                </div>
 
 
             </main >
