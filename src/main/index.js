@@ -7,7 +7,6 @@ function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     icon:"../../resources/icon.png",
-    
     width: 900,
     height: 670,
     show: false,
