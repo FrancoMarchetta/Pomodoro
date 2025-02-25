@@ -6,7 +6,7 @@ import '../../components/ComponentCss/Buttons.css';
 import SideBar from '../../components/SideBar';
 
 const Start = () => {
-    const [minutes, setMinutes] = useState(0);
+    const [minutes, setMinutes] = useState(5);
     const [backUpMinutes, setBackUpMinutes] = useState(0);
 
     const [seconds, setSeconds] = useState(0);
@@ -16,6 +16,28 @@ const Start = () => {
     const [toggleModal, setToggleModal] = useState(false);
 
     const audioRef = useRef(null);
+
+    const setSecondsInputRef = useRef();
+    const setMinutesInputRef = useRef()
+
+    const handleKeyPress = (e) => {
+        if (e.key == "Enter") {
+            setIsRunning(true);
+            setToggleModal(!toggleModal);
+        }
+        if (e.key == "ArrowDown") {
+            setSecondsInputRef.current.focus();
+        }
+        if (e.key == "ArrowUp") {
+            setMinutesInputRef.current.focus();
+        }
+    }
+
+    useEffect(() => {
+        if (toggleModal) {
+            setMinutesInputRef.current.focus();
+        }
+    }, [toggleModal]);
 
     // Manejo de temporizador
     useEffect(() => {
@@ -51,7 +73,7 @@ const Start = () => {
         }
         setMinutes(backUpMinutes);
         setSeconds(backUpSeconds);
-        setIsRunning(true);
+        setIsRunning(false);
     };
 
     const path = useNavigate();
@@ -62,6 +84,7 @@ const Start = () => {
             audioRef.current.pause();
         }
     };
+
 
     return (
         <>
@@ -80,7 +103,9 @@ const Start = () => {
 
                         {toggleModal && (
                             <>
+
                                 <input
+                                    ref={setMinutesInputRef}
                                     className='Buttons smallerShi'
                                     type='text'
                                     placeholder='Enter minutes'
@@ -89,8 +114,12 @@ const Start = () => {
                                         setMinutes(value);
                                         setBackUpMinutes(value);
                                     }}
+
+                                    onKeyDown={handleKeyPress}
                                 />
+
                                 <input
+                                    ref={setSecondsInputRef}
                                     className='Buttons smallerShi'
                                     type='text'
                                     placeholder='Enter seconds'
@@ -99,9 +128,14 @@ const Start = () => {
                                         setSeconds(value);
                                         setBackUpSeconds(value);
                                     }}
+
+                                    onKeyDown={handleKeyPress}
                                 />
                             </>
                         )}
+
+
+
 
                         <Buttons
                             onClick={() => {
@@ -128,7 +162,14 @@ const Start = () => {
                         {seconds === 0 && minutes === 0 && <Buttons onClick={restartTimer} text={'Restart'}></Buttons>}
                     </div>
                     <div className='zona-btns'>
-                        <Buttons onClick={() => setIsRunning(false)} text={'Stop'}></Buttons>
+                        <Buttons onClick={() => {
+                            setIsRunning(false)
+                            if (audioRef.current) {
+                                audioRef.current.pause();
+                                audioRef.current.currentTime = 0;
+                                audioRef.current = null;
+                            }
+                        }} text={'Stop'}></Buttons>
                         <Buttons onClick={() => setIsRunning(true)} text={'Start'}></Buttons>
                     </div>
                 </section>
