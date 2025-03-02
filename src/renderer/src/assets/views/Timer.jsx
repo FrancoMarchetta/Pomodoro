@@ -27,6 +27,22 @@ const Timer = () => {
         path('/');
 
     };
+
+
+    const handleKeyPress = (e) => {
+        if (e.key == " ") { // <-- detects space key
+            setIsTimerOn(!isTimerOn);
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyPress);
+        return () => {
+            window.removeEventListener('keydown', handleKeyPress);
+        };
+    }, [isTimerOn]);
+
+
     return (
         <>
             <Buttons onClick={GoToHome} text={'Go Back'}></Buttons>

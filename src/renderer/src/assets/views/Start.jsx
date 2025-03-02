@@ -20,6 +20,8 @@ const Start = () => {
     const setSecondsInputRef = useRef();
     const setMinutesInputRef = useRef()
 
+
+
     const handleKeyPress = (e) => {
         if (e.key == "Enter") {
             setIsRunning(true);
@@ -31,7 +33,17 @@ const Start = () => {
         if (e.key == "ArrowUp") {
             setMinutesInputRef.current.focus();
         }
+        if (e.key == " ") { // <-- detects space key
+            setIsRunning(!isRunning);
+        }
     }
+
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyPress);
+        return () => {
+            window.removeEventListener('keydown', handleKeyPress);
+        };
+    }, [isRunning, toggleModal]);
 
     useEffect(() => {
         if (toggleModal) {
